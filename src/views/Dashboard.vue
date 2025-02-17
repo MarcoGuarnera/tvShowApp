@@ -5,6 +5,7 @@ import BaseCard from "@/components/core/BaseCard.vue";
 import { Show } from "@/types";
 import { useRouter } from "vue-router";
 import LoadingSpinner from "@/components/shared/LoadingSpinner.vue";
+import BaseButton from "@/components/core/BaseButton.vue";
 
 const store = useStore();
 const router = useRouter();
@@ -27,6 +28,10 @@ const goToShowDetail = (show: Show) => {
 if (!shows.value.length) {
   store.dispatch("shows/fetchShows");
 }
+
+const getGenreLink = (genre: string) => {
+  return `/shows/genre/${genre}`;
+};
 </script>
 
 <template>
@@ -39,7 +44,9 @@ if (!shows.value.length) {
       <div v-for="genre in genres" :key="genre" class="genre-section">
         <div class="genre-header">
           <h2>{{ genre }}</h2>
-          <router-link :to="`/shows/genre/${genre}`">View More</router-link>
+          <BaseButton mode="flat" link :to="getGenreLink(genre)"
+            >View More {{ genre }} shows</BaseButton
+          >
         </div>
         <div class="card-row">
           <BaseCard
