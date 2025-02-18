@@ -19,7 +19,9 @@ const handleClick = (show: Show) => {
     <ShowCard
       v-for="show in shows"
       :key="show.id"
-      :show="show"
+      :id="show.id"
+      :name="show.name"
+      :image="show.image.medium"
       :hover="true"
       @click="handleClick(show)"
     />

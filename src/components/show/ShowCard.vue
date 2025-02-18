@@ -3,22 +3,23 @@ import { defineProps } from "vue";
 import { Show } from "@/types";
 
 const props = defineProps<{
-  show: Show;
+  name: string;
+  image: string;
+  id: number;
   hover?: boolean;
 }>();
 
-const emit = defineEmits<(event: "click", show: Show) => void>();
+const emit = defineEmits<(event: "click", id: number) => void>();
 </script>
 
 <template>
   <div class="card">
     <img
-      :src="show.image.medium"
-      :alt="show.name"
+      :src="image"
+      :alt="name"
       :class="{ 'hover-enabled': hover !== false }"
-      @click="emit('click', show)"
+      @click="emit('click', id)"
     />
-    <h4>{{ show.name }}</h4>
   </div>
 </template>
 
@@ -35,14 +36,16 @@ const emit = defineEmits<(event: "click", show: Show) => void>();
   width: 100%;
   height: auto;
   object-fit: cover;
-  cursor: pointer;
   border: 2px solid transparent;
   transition: transform 0.3s, border-color 0.3s;
+  box-shadow: 0 2px 8px #00000047;
+  border-radius: 20px;
 }
 
 .hover-enabled:hover {
   transform: scale(1.1);
   border-color: white;
+  cursor: pointer;
 }
 
 h4 {

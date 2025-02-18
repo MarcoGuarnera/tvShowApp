@@ -33,6 +33,7 @@ header {
   justify-content: center;
   align-items: center;
   z-index: 99;
+  margin-bottom: 20px;
 }
 
 header a {
@@ -66,7 +67,7 @@ h1 a.router-link-active {
 .header-container {
   top: 0;
   left: 0;
-  position: fixed;
+  position: sticky;
 }
 
 header nav {

@@ -23,8 +23,8 @@ const getShowsByGenre = (genre: string): Show[] => {
 
 const myShowsList = computed(() => store.getters["myShowsList/getMyShows"]);
 
-const goToShowDetail = (show: Show) => {
-  router.push(`/shows/${show.id}`);
+const goToShowDetail = (id: number) => {
+  router.push(`/shows/${id}`);
 };
 
 if (!shows.value.length) {
@@ -54,9 +54,11 @@ const getGenreLink = (genre: string) => {
           <ShowCard
             v-for="show in getShowsByGenre(genre)"
             :key="show.id"
-            :show="show"
+            :id="show.id"
+            :name="show.name"
+            :image="show.image.medium"
             :hover="true"
-            @click="goToShowDetail(show)"
+            @click="goToShowDetail(show.id)"
           />
         </CarouselBlock>
       </div>
@@ -68,9 +70,11 @@ const getGenreLink = (genre: string) => {
           <ShowCard
             v-for="show in myShowsList"
             :key="show.id"
-            :show="show"
+            :id="show.id"
+            :name="show.name"
+            :image="show.image.medium"
             :hover="true"
-            @click="goToShowDetail(show)"
+            @click="goToShowDetail(show.id)"
           />
         </CarouselBlock>
       </div>
@@ -84,7 +88,7 @@ const getGenreLink = (genre: string) => {
 
 <style scoped>
 .genre-section {
-  margin: 0 15px;
+  margin: 0 16px;
 }
 .genre-header {
   display: flex;

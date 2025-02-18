@@ -6,16 +6,11 @@ import Header from "./components/core/Header.vue";
 <template>
   <Header />
 
-  <router-view v-slot="slotProps">
-    <transition name="route" mode="out-in">
-      <component class="container" :is="slotProps.Component"></component>
-    </transition>
-  </router-view>
+  <div class="container">
+    <router-view v-slot="slotProps">
+      <transition name="route" mode="out-in">
+        <component :is="slotProps.Component"></component>
+      </transition>
+    </router-view>
+  </div>
 </template>
-
-<style scoped>
-.container {
-  margin-left: 20px;
-  margin-right: 20px;
-}
-</style>

@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits } from "vue";
+import { defineProps, defineEmits, useAttrs } from "vue";
 import ArrowIcon from "./ArrowIcon.vue";
 
 const props = defineProps<{
   mode?: "flat" | "outline";
   link?: boolean;
   to?: string;
+  customClass?: string;
 }>();
 
 const emit = defineEmits<(event: "click", eventData: MouseEvent) => void>();
@@ -13,10 +14,12 @@ const emit = defineEmits<(event: "click", eventData: MouseEvent) => void>();
 const handleClick = (event: MouseEvent): void => {
   emit("click", event);
 };
+
+const attrs = useAttrs() as Record<string, unknown>;
 </script>
 
 <template>
-  <button v-if="!link" :class="mode" @click="handleClick">
+  <button v-if="!link" :class="[mode, attrs.class]" @click="handleClick">
     <slot></slot>
     <ArrowIcon v-if="mode === 'flat'" />
   </button>
