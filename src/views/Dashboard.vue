@@ -1,11 +1,13 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import { useStore } from "vuex";
-import BaseCard from "@/components/core/BaseCard.vue";
 import { Show } from "@/types";
 import { useRouter } from "vue-router";
+
 import LoadingSpinner from "@/components/shared/LoadingSpinner.vue";
 import BaseButton from "@/components/core/BaseButton.vue";
+import CarouselBlock from "@/components/shared/CarouselBlock.vue";
+import ShowCard from "@/components/show/ShowCard.vue";
 
 const store = useStore();
 const router = useRouter();
@@ -48,27 +50,29 @@ const getGenreLink = (genre: string) => {
             >View More {{ genre }} shows</BaseButton
           >
         </div>
-        <div class="card-row">
-          <BaseCard
+        <CarouselBlock>
+          <ShowCard
             v-for="show in getShowsByGenre(genre)"
             :key="show.id"
             :show="show"
+            :hover="true"
             @click="goToShowDetail(show)"
           />
-        </div>
+        </CarouselBlock>
       </div>
       <div class="my-list">
         <div class="list-header">
           <h2>My List</h2>
         </div>
-        <div class="card-row">
-          <BaseCard
+        <CarouselBlock>
+          <ShowCard
             v-for="show in myShowsList"
             :key="show.id"
             :show="show"
+            :hover="true"
             @click="goToShowDetail(show)"
           />
-        </div>
+        </CarouselBlock>
       </div>
     </div>
 
@@ -80,22 +84,12 @@ const getGenreLink = (genre: string) => {
 
 <style scoped>
 .genre-section {
-  margin-bottom: 32px;
+  margin: 0 15px;
 }
 .genre-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.card-row {
-  display: flex;
-  overflow-x: auto;
-  gap: 16px;
-  padding: 8px 0;
-}
-
-.my-list {
-  margin-top: 32px;
+  user-select: none;
 }
 </style>

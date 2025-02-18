@@ -1,20 +1,23 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import BaseButton from "./BaseButton.vue";
+</script>
+
 <template>
   <header class="header-container">
     <nav>
       <div>
         <router-link class="logo" to="/">
-          <img src="@/assets/vue.svg" alt="Logo" class="logo" />
+          <img src="@/assets/vue.svg" alt="Logo" />
           <h1>TV Show Application</h1>
         </router-link>
       </div>
 
       <ul>
         <li>
-          <router-link to="/shows">Home</router-link>
+          <BaseButton link mode="outline" to="/shows">Dashboard</BaseButton>
         </li>
         <li>
-          <router-link to="/search">Search</router-link>
+          <BaseButton link mode="outline" to="/Search">Search</BaseButton>
         </li>
       </ul>
     </nav>
@@ -29,6 +32,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 99;
 }
 
 header a {
@@ -67,6 +71,7 @@ h1 a.router-link-active {
 
 header nav {
   width: 100%;
+  padding: 0 20px;
   margin: auto;
   display: flex;
   justify-content: space-between;

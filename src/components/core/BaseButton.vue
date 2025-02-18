@@ -36,7 +36,6 @@ a {
   border: 1px solid #3a0061;
   color: white;
   cursor: pointer;
-  margin-right: 0.5rem;
   display: inline-block;
   transition: background-color 0.3s, border 0.3s;
 }

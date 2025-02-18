@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from "vue";
+
 import { Show } from "@/types";
-import BaseCard from "@/components/core/BaseCard.vue";
+import ShowCard from "@/components/show/ShowCard.vue";
 
 const props = defineProps<{
   shows: Show[];
@@ -15,10 +16,11 @@ const handleClick = (show: Show) => {
 
 <template>
   <div class="grid-Cards-block">
-    <BaseCard
+    <ShowCard
       v-for="show in shows"
       :key="show.id"
       :show="show"
+      :hover="true"
       @click="handleClick(show)"
     />
   </div>

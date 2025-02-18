@@ -12,3 +12,10 @@ import Header from "./components/core/Header.vue";
     </transition>
   </router-view>
 </template>
+
+<style scoped>
+.container {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+</style>
