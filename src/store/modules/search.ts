@@ -45,10 +45,14 @@ const search: Module<SearchState, any> = {
         commit("setLoading", false);
       }
     },
+    resetShows({ commit }) {
+      commit("setResults", []);
+    },
   },
   getters: {
     getResults: (state) => state.results,
     isLoading: (state) => state.loading,
+    isError: (state) => state.error,
   },
 };
 

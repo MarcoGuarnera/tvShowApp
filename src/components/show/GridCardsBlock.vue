@@ -21,7 +21,7 @@ const handleClick = (show: Show) => {
       :key="show.id"
       :id="show.id"
       :name="show.name"
-      :image="show.image.medium"
+      :image="show.image?.medium"
       :hover="true"
       @click="handleClick(show)"
     />

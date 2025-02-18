@@ -8,13 +8,13 @@ import { Show } from "@/types";
 import ShowCard from "@/components/show/ShowCard.vue";
 import BaseCard from "@/components/base/BaseCard.vue";
 import BaseButton from "@/components/base/BaseButton.vue";
+import ManageListToggle from "@/components/show/ManageListToggle.vue";
 
 const store = useStore();
 const route = useRoute();
 const router = useRouter();
 const showId = Number(route.params.id);
 
-// const loading = computed(() => store.getters["shows/isLoading"]);
 const show = computed<Show | undefined>(() => {
   return store.getters["shows/getShowById"](showId);
 });
@@ -26,17 +26,25 @@ const goBack = () => {
 
 <template>
   <div>
-    <BaseButton mode="outline" @click="goBack" class="button">Back</BaseButton>
+    <div class="buttons-wrapper">
+      <BaseButton mode="outline" @click="goBack" class="button"
+        >Back</BaseButton
+      >
+      <ManageListToggle v-if="show" :show="show" />
+    </div>
     <BaseCard>
       <div class="detail-content" v-if="show">
         <div class="left-column">
-          <h1 class="show-title">
-            {{ show.name }}
+          <div class="show-title-container">
+            <h1 class="show-title">
+              {{ show.name }}
+            </h1>
             <span class="rating">
+              <p>Ratings: {{ show.rating.average }}</p>
               <IconStar class="star-icon" />
-              {{ show.rating.average }}
             </span>
-          </h1>
+          </div>
+
           <div class="show-summary" v-html="show.summary"></div>
           <div class="show-info">
             <p>Status: {{ show.status }}</p>
@@ -60,6 +68,13 @@ const goBack = () => {
 </template>
 
 <style scoped>
+.buttons-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20px;
+}
+
 .detail-content {
   display: grid;
   grid-template-columns: 1fr;
@@ -83,25 +98,29 @@ const goBack = () => {
   gap: 15px;
 }
 
+.show-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 .show-title {
   font-size: 2rem;
   margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .rating {
   display: flex;
   align-items: center;
   font-size: 1.2rem;
-  color: #fdd835; /* Yellow */
 }
 
 .star-icon {
   width: 24px;
   height: 24px;
   margin-right: 4px;
+  color: #fdd835; /* Yellow */
 }
 
 .show-summary {
@@ -111,8 +130,5 @@ const goBack = () => {
 .show-info p {
   margin: 0;
   font-size: 1rem;
-}
-.button {
-  margin-left: 20px;
 }
 </style>

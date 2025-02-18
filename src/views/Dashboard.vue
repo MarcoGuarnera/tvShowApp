@@ -8,6 +8,7 @@ import LoadingSpinner from "@/components/shared/LoadingSpinner.vue";
 import CarouselBlock from "@/components/shared/CarouselBlock.vue";
 import ShowCard from "@/components/show/ShowCard.vue";
 import BaseButton from "@/components/base/BaseButton.vue";
+import Watchlist from "@/components/show/Watchlist.vue";
 
 const store = useStore();
 const router = useRouter();
@@ -21,7 +22,7 @@ const getShowsByGenre = (genre: string): Show[] => {
   return shows.value.filter((show: Show) => show.genres.includes(genre));
 };
 
-const myShowsList = computed(() => store.getters["myShowsList/getMyShows"]);
+const myWatchlist = computed(() => store.getters["watchlist/getMyShows"]);
 
 const goToShowDetail = (id: number) => {
   router.push(`/shows/${id}`);
@@ -42,8 +43,9 @@ const getGenreLink = (genre: string) => {
       <LoadingSpinner />
     </div>
 
-    <div v-else-if="genres.length > 0">
-      <div v-for="genre in genres" :key="genre" class="genre-section">
+    <div v-else-if="genres.length > 0" class="genre-section">
+      <Watchlist :my-shows-list="myWatchlist" @click="goToShowDetail" />
+      <div v-for="genre in genres" :key="genre">
         <div class="genre-header">
           <h2>{{ genre }}</h2>
           <BaseButton mode="flat" link :to="getGenreLink(genre)"
@@ -56,25 +58,9 @@ const getGenreLink = (genre: string) => {
             :key="show.id"
             :id="show.id"
             :name="show.name"
-            :image="show.image.medium"
+            :image="show.image?.medium"
             :hover="true"
-            @click="goToShowDetail(show.id)"
-          />
-        </CarouselBlock>
-      </div>
-      <div class="my-list">
-        <div class="list-header">
-          <h2>My List</h2>
-        </div>
-        <CarouselBlock>
-          <ShowCard
-            v-for="show in myShowsList"
-            :key="show.id"
-            :id="show.id"
-            :name="show.name"
-            :image="show.image.medium"
-            :hover="true"
-            @click="goToShowDetail(show.id)"
+            @click="goToShowDetail"
           />
         </CarouselBlock>
       </div>

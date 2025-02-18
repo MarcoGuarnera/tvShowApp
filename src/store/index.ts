@@ -1,12 +1,17 @@
 import { createStore } from "vuex";
 import shows from "./modules/shows";
 import search from "./modules/search";
-import myShowsList from "./modules/myShowsList";
+import watchlist from "./modules/watchlist";
 
-export default createStore({
+const store = createStore({
   modules: {
     shows,
     search,
-    myShowsList,
+    watchlist,
   },
 });
+
+// Initialize watchlist data from localStorage
+store.dispatch("watchlist/initWatchlist");
+
+export default store;

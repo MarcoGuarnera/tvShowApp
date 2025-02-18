@@ -7,12 +7,14 @@ import debounce from "lodash-es/debounce";
 
 import LoadingSpinner from "@/components/shared/LoadingSpinner.vue";
 import GridCardsBlock from "@/components/show/GridCardsBlock.vue";
+import SearchInput from "@/components/base/SearchInput.vue";
 
 const store = useStore();
 const router = useRouter();
 
 const query = ref("");
 const loading = computed(() => store.getters["search/isLoading"]);
+const error = computed(() => store.getters["search/isError"]);
 const searchResults = computed(() => store.getters["search/getResults"]);
 
 const debouncedSearch = debounce(() => {
@@ -23,7 +25,7 @@ const debouncedSearch = debounce(() => {
 
 watch(query, () => {
   if (query.value.length < 3) {
-    store.commit("search/setResults", []);
+    store.dispatch("search/resetShows");
   } else {
     debouncedSearch();
   }
@@ -37,13 +39,13 @@ const goToShowDetail = (show: any) => {
 <template>
   <div class="search-page">
     <div class="search-container">
-      <!-- <BaseInput v-model="query" placeholder="Search for a show..." /> -->
+      <SearchInput
+        v-model="query"
+        placeholder="Search for a show by title..."
+      />
     </div>
 
     <div class="content-section">
-      <div v-if="query.length < 3" class="placeholder">
-        Start typing to search for show title
-      </div>
       <LoadingSpinner v-if="loading" />
       <div v-if="!loading && query.length >= 3">
         <GridCardsBlock
@@ -51,7 +53,7 @@ const goToShowDetail = (show: any) => {
           :shows="searchResults"
           @select="goToShowDetail"
         />
-        <div v-else class="no-results">No result for "{{ query }}"</div>
+        <div v-else class="no-results">No result for {{ query }}</div>
       </div>
     </div>
   </div>
@@ -66,8 +68,9 @@ const goToShowDetail = (show: any) => {
 }
 .placeholder,
 .no-results {
-  margin-top: 16px;
+  margin-top: 20px;
   font-size: 1.2rem;
   color: #666;
+  text-align: center;
 }
 </style>

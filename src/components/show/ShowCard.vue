@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import { defineProps } from "vue";
+import placeholderImage from "@/assets/img-placeholder.png";
 
 const props = defineProps<{
   name: string;
-  image: string;
+  image: string | undefined;
   id: number;
   hover?: boolean;
 }>();
@@ -14,7 +15,7 @@ const emit = defineEmits<(event: "click", id: number) => void>();
 <template>
   <div class="card">
     <img
-      :src="image"
+      :src="image || placeholderImage"
       :alt="name"
       :class="{ 'hover-enabled': hover !== false }"
       @click="emit('click', id)"
@@ -45,10 +46,5 @@ const emit = defineEmits<(event: "click", id: number) => void>();
   transform: scale(1.1);
   border-color: white;
   cursor: pointer;
-}
-
-h4 {
-  margin-top: 20px;
-  text-align: center;
 }
 </style>
