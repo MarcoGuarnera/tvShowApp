@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits, useAttrs } from "vue";
-import ArrowIcon from "./ArrowIcon.vue";
+import ArrowIcon from "@/components/base/ArrowIcon.vue";
 
 const props = defineProps<{
   mode?: "flat" | "outline";

@@ -4,8 +4,8 @@ import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 
 import { Show } from "@/types";
-import GridCardsBlock from "@/components/shared/GridCardsBlock.vue";
-import BaseButton from "@/components/core/BaseButton.vue";
+import BaseButton from "@/components/base/BaseButton.vue";
+import GridCardsBlock from "@/components/show/GridCardsBlock.vue";
 
 const store = useStore();
 const route = useRoute();
@@ -29,6 +29,7 @@ const goBack = () => {
 <template>
   <div class="genre-view">
     <BaseButton mode="outline" @click="goBack" class="button">Back</BaseButton>
+
     <h1>{{ genre }} Shows</h1>
     <GridCardsBlock :shows="genreShows" @select="goToShowDetail" />
   </div>

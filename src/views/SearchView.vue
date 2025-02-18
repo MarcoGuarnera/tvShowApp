@@ -3,11 +3,10 @@ import { ref, watch, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 
-import BaseInput from "@/components/core/SearchInput.vue";
-import LoadingSpinner from "@/components/shared/LoadingSpinner.vue";
-
 import debounce from "lodash-es/debounce";
-import GridCardsBlock from "@/components/shared/GridCardsBlock.vue";
+
+import LoadingSpinner from "@/components/shared/LoadingSpinner.vue";
+import GridCardsBlock from "@/components/show/GridCardsBlock.vue";
 
 const store = useStore();
 const router = useRouter();
@@ -38,7 +37,7 @@ const goToShowDetail = (show: any) => {
 <template>
   <div class="search-page">
     <div class="search-container">
-      <BaseInput v-model="query" placeholder="Search for a show..." />
+      <!-- <BaseInput v-model="query" placeholder="Search for a show..." /> -->
     </div>
 
     <div class="content-section">

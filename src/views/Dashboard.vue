@@ -5,9 +5,9 @@ import { Show } from "@/types";
 import { useRouter } from "vue-router";
 
 import LoadingSpinner from "@/components/shared/LoadingSpinner.vue";
-import BaseButton from "@/components/core/BaseButton.vue";
 import CarouselBlock from "@/components/shared/CarouselBlock.vue";
 import ShowCard from "@/components/show/ShowCard.vue";
+import BaseButton from "@/components/base/BaseButton.vue";
 
 const store = useStore();
 const router = useRouter();

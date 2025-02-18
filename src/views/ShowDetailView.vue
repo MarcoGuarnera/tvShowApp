@@ -5,10 +5,9 @@ import { useRoute, useRouter } from "vue-router";
 import { IconStar } from "@tabler/icons-vue";
 
 import { Show } from "@/types";
-import BaseCard from "@/components/core/BaseCard.vue"; // Import the new Card component
 import ShowCard from "@/components/show/ShowCard.vue";
-import LoadingSpinner from "@/components/shared/LoadingSpinner.vue";
-import BaseButton from "@/components/core/BaseButton.vue";
+import BaseCard from "@/components/base/BaseCard.vue";
+import BaseButton from "@/components/base/BaseButton.vue";
 
 const store = useStore();
 const route = useRoute();

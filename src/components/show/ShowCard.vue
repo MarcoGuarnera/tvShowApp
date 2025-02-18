@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { defineProps } from "vue";
-import { Show } from "@/types";
 
 const props = defineProps<{
   name: string;
