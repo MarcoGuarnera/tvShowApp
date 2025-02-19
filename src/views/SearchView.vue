@@ -8,6 +8,7 @@ import debounce from "lodash-es/debounce";
 import LoadingSpinner from "@/components/shared/LoadingSpinner.vue";
 import GridCardsBlock from "@/components/show/GridCardsBlock.vue";
 import SearchInput from "@/components/base/SearchInput.vue";
+import NoResults from "@/components/base/NoResults.vue";
 
 const store = useStore();
 const router = useRouter();
@@ -31,6 +32,13 @@ watch(query, () => {
   }
 });
 
+const showNoResults = computed(() => {
+  if (query.value.length < 3) return false;
+  return (
+    !loading.value && (Boolean(error.value) || searchResults.value.length === 0)
+  );
+});
+
 const goToShowDetail = (show: any) => {
   router.push(`/shows/${show.id}`);
 };
@@ -51,10 +59,17 @@ const goToShowDetail = (show: any) => {
         <GridCardsBlock
           v-if="searchResults.length > 0"
           :shows="searchResults"
-          @select="goToShowDetail"
+          @click="goToShowDetail"
         />
-        <div v-else class="no-results">No result for {{ query }}</div>
       </div>
+      <NoResults v-if="showNoResults">
+        <template v-if="error">
+          <p>Error: {{ error }}. Please try again.</p>
+        </template>
+        <template v-else>
+          <p>No result for "{{ query }}". Please try with a different title</p>
+        </template>
+      </NoResults>
     </div>
   </div>
 </template>
@@ -65,12 +80,5 @@ const goToShowDetail = (show: any) => {
 }
 .search-container {
   margin: 16px 0;
-}
-.placeholder,
-.no-results {
-  margin-top: 20px;
-  font-size: 1.2rem;
-  color: #666;
-  text-align: center;
 }
 </style>

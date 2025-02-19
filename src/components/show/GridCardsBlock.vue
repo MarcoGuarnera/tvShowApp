@@ -1,16 +1,14 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits } from "vue";
-
 import { Show } from "@/types";
 import ShowCard from "@/components/show/ShowCard.vue";
 
 const props = defineProps<{
   shows: Show[];
 }>();
-const emit = defineEmits(["select"]);
+const emit = defineEmits<(event: "click", show: Show) => void>();
 
 const handleClick = (show: Show) => {
-  emit("select", show);
+  emit("click", show);
 };
 </script>
 

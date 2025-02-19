@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { Show } from "@/types";
-import { defineProps } from "vue";
 import CarouselBlock from "../shared/CarouselBlock.vue";
 import ShowCard from "./ShowCard.vue";
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { IconStar } from "@tabler/icons-vue";
@@ -9,14 +9,20 @@ import ShowCard from "@/components/show/ShowCard.vue";
 import BaseCard from "@/components/base/BaseCard.vue";
 import BaseButton from "@/components/base/BaseButton.vue";
 import ManageListToggle from "@/components/show/ManageListToggle.vue";
+import LoadingSpinner from "@/components/shared/LoadingSpinner.vue";
+import NoResults from "@/components/base/NoResults.vue";
 
 const store = useStore();
 const route = useRoute();
 const router = useRouter();
 const showId = Number(route.params.id);
 
-const show = computed<Show | undefined>(() => {
-  return store.getters["shows/getShowById"](showId);
+const show = computed<Show>(() => store.getters["showDetail/getShow"]);
+const loading = computed<boolean>(() => store.getters["showDetail/isLoading"]);
+const error = computed<string>(() => store.getters["showDetail/getError"]);
+
+onMounted(() => {
+  store.dispatch("showDetail/fetchShow", showId);
 });
 
 const goBack = () => {
@@ -26,6 +32,9 @@ const goBack = () => {
 
 <template>
   <div>
+    <div v-if="loading && !show">
+      <LoadingSpinner />
+    </div>
     <div class="buttons-wrapper">
       <BaseButton mode="outline" @click="goBack" class="button"
         >Back</BaseButton
@@ -40,7 +49,7 @@ const goBack = () => {
               {{ show.name }}
             </h1>
             <span class="rating">
-              <p>Ratings: {{ show.rating.average }}</p>
+              <p>Ratings: {{ show.rating?.average }}</p>
               <IconStar class="star-icon" />
             </span>
           </div>
@@ -56,13 +65,13 @@ const goBack = () => {
           <ShowCard
             :id="show.id"
             :name="show.name"
-            :image="show.image.original"
+            :image="show.image?.original"
           />
         </div>
       </div>
-      <div v-else-if="!show">
-        <p>Show not found.</p>
-      </div>
+      <NoResults v-else-if="error">
+        <p>Show not found. {{ error }}, Try Later</p>
+      </NoResults>
     </BaseCard>
   </div>
 </template>

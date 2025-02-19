@@ -1,5 +1,6 @@
 import { Module } from "vuex";
 import { Show } from "@/types";
+import { fetchTwoPagesAndCache } from "@/utils/showsFetchCacheHelper";
 
 export interface ShowsState {
   shows: Show[];
@@ -31,8 +32,7 @@ const shows: Module<ShowsState, any> = {
     async fetchShows({ commit }) {
       commit("setLoading", true);
       try {
-        const response = await fetch("https://api.tvmaze.com/shows");
-        const data = await response.json();
+        const data = await fetchTwoPagesAndCache();
         commit("setShows", data);
       } catch (err: any) {
         commit("setError", err.message);
@@ -53,6 +53,7 @@ const shows: Module<ShowsState, any> = {
     },
 
     isLoading: (state) => state.loading,
+    getError: (state) => state.error,
   },
 };
 

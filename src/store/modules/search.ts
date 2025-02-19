@@ -35,8 +35,6 @@ const search: Module<SearchState, any> = {
           `https://api.tvmaze.com/search/shows?q=${query}`
         );
         const data = await response.json();
-        // Map each item to extract the "show" property
-        console.log(data);
         const shows = data.map((item: any) => item.show);
         commit("setResults", shows);
       } catch (err: any) {

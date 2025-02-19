@@ -6,16 +6,17 @@ import { useRoute, useRouter } from "vue-router";
 import { Show } from "@/types";
 import BaseButton from "@/components/base/BaseButton.vue";
 import GridCardsBlock from "@/components/show/GridCardsBlock.vue";
+import NoResults from "@/components/base/NoResults.vue";
 
 const store = useStore();
 const route = useRoute();
 const router = useRouter();
 const genre = route.params.genre as string;
 
-const shows = computed(() => store.getters["shows/getShows"]);
-const genreShows = computed((): Show[] => {
-  return shows.value.filter((show: Show) => show.genres.includes(genre));
-});
+const error = computed<string>(() => store.getters["shows/getError"]);
+const genreShows = computed<Show[]>(() =>
+  store.getters["shows/getShowsByGenre"](genre)
+);
 
 const goToShowDetail = (show: Show) => {
   router.push(`/shows/${show.id}`);
@@ -27,12 +28,16 @@ const goBack = () => {
 </script>
 
 <template>
-  <div class="genre-view">
+  <div class="genre-view" v-if="genreShows">
     <BaseButton mode="outline" @click="goBack" class="button">Back</BaseButton>
 
     <h1>{{ genre }} Shows</h1>
-    <GridCardsBlock :shows="genreShows" @select="goToShowDetail" />
+    <GridCardsBlock :shows="genreShows" @click="goToShowDetail" />
   </div>
+
+  <NoResults v-else>
+    <p>Shows not found. {{ error }}, Try Later</p>
+  </NoResults>
 </template>
 
 <style scoped>

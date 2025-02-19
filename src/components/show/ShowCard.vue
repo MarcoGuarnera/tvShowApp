@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { defineProps } from "vue";
 import placeholderImage from "@/assets/img-placeholder.png";
 
 const props = defineProps<{
