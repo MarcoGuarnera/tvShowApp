@@ -113,6 +113,11 @@ const goBack = () => {
   justify-content: space-between;
   gap: 10px;
 }
+@media (max-width: 600px) {
+  .show-title-container {
+    flex-direction: column;
+  }
+}
 
 .show-title {
   font-size: 2rem;

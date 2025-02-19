@@ -5,19 +5,18 @@ import BaseButton from "@/components/base/BaseButton.vue";
 <template>
   <header class="header-container">
     <nav>
-      <div>
+      <div class="logo-container">
         <router-link class="logo" to="/">
           <img src="@/assets/vue.svg" alt="Logo" />
           <h1>TV Show Application</h1>
         </router-link>
       </div>
-
-      <ul>
+      <ul class="nav-links">
         <li>
           <BaseButton link mode="outline" to="/shows">Dashboard</BaseButton>
         </li>
         <li>
-          <BaseButton link mode="outline" to="/Search">Search</BaseButton>
+          <BaseButton link mode="outline" to="/search">Search</BaseButton>
         </li>
       </ul>
     </nav>
@@ -25,22 +24,48 @@ import BaseButton from "@/components/base/BaseButton.vue";
 </template>
 
 <style scoped>
-header {
+.header-container {
   width: 100%;
-  height: 5rem;
   background-image: linear-gradient(-296deg, #005e5d, #00857a);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
   z-index: 99;
   margin-bottom: 20px;
 }
 
-header a {
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
   text-decoration: none;
   color: #fff;
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
+}
+
+.logo img {
+  padding: 10px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0 0.5rem;
 }
 
 a:active,
@@ -49,56 +74,25 @@ a.router-link-active {
   background-color: #004c4c;
 }
 
-h1 {
-  margin: 0;
-}
+@media (max-width: 600px) {
+  header nav {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
 
-h1 a {
-  color: white;
-  margin: 0;
-}
+  .logo-container {
+    margin-bottom: 10px;
+  }
 
-h1 a:hover,
-h1 a:active,
-h1 a.router-link-active {
-  border-color: transparent;
-}
+  .nav-links {
+    align-items: center;
+    gap: 20px;
+  }
 
-.header-container {
-  top: 0;
-  left: 0;
-  position: sticky;
-}
-
-header nav {
-  width: 100%;
-  padding: 0 20px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-li {
-  margin: 0 0.5rem;
-}
-
-img {
-  padding: 10px;
-}
-
-.logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .nav-links li {
+    margin: 5px 0;
+  }
 }
 </style>

@@ -75,4 +75,10 @@ const action = computed(() => {
 .icon-fade-leave-from {
   opacity: 1;
 }
+
+@media (max-width: 600px) {
+  p {
+    margin-left: 20px;
+  }
+}
 </style>

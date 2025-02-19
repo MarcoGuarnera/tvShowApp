@@ -100,6 +100,12 @@ onBeforeUnmount(() => {
   overflow: hidden;
 }
 
+@media (max-width: 450px) {
+  .carousel-container {
+    overflow-x: auto;
+  }
+}
+
 .carousel-content {
   display: flex;
   gap: 10px;

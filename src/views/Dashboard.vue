@@ -78,13 +78,46 @@ const getGenreLink = (genre: string) => {
 </template>
 
 <style scoped>
-.genre-section {
-  margin: 0 16px;
+.dashboard-container {
+  padding: 16px;
+  box-sizing: border-box;
+  width: 100%;
 }
+
+.genre-section {
+  margin: 0 16px 32px;
+}
+
 .genre-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   user-select: none;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+  .dashboard-container {
+    padding: 8px;
+  }
+
+  .genre-section {
+    margin: 0 8px 24px;
+  }
+
+  .genre-header {
+    gap: 20px;
+  }
+
+  .genre-header h2 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 349px) {
+  .dashboard-container {
+    width: 349px;
+    overflow-x: auto;
+  }
 }
 </style>

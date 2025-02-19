@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import BaseCard from "./BaseCard.vue";
+import { useMediaQuery } from "@vueuse/core";
 
 const props = defineProps<{
   placeholder?: string;
@@ -38,7 +39,15 @@ const search = defineModel<string>();
   border: 0;
   outline: none;
 }
+
 .search-input::placeholder {
   color: white;
+}
+
+@media (max-width: 600px) {
+  .search-input {
+    font-size: 1rem;
+    font-weight: normal;
+  }
 }
 </style>
