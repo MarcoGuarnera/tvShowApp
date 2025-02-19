@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import BaseButton from "@/components/base/BaseButton.vue";
+import BaseButton from "@/components/base/base-button/BaseButton.vue";
 </script>
 
 <template>
@@ -51,6 +51,7 @@ header nav {
   align-items: center;
   text-decoration: none;
   color: #fff;
+  padding: 6px;
 }
 
 .logo img {

@@ -5,12 +5,12 @@ import { useRoute, useRouter } from "vue-router";
 import { IconStar } from "@tabler/icons-vue";
 
 import { Show } from "@/types";
-import ShowCard from "@/components/show/ShowCard.vue";
-import BaseCard from "@/components/base/BaseCard.vue";
-import BaseButton from "@/components/base/BaseButton.vue";
-import ManageListToggle from "@/components/show/ManageListToggle.vue";
+import ShowCard from "@/components/show/show-card/ShowCard.vue";
+import BaseCard from "@/components/base/base-card/BaseCard.vue";
+import BaseButton from "@/components/base/base-button/BaseButton.vue";
+import ManageListToggle from "@/components/show/manage-list-toggle/ManageListToggle.vue";
 import LoadingSpinner from "@/components/shared/LoadingSpinner.vue";
-import NoResults from "@/components/base/NoResults.vue";
+import NoResults from "@/components/base/no-result-block/NoResultsBlock.vue";
 
 const store = useStore();
 const route = useRoute();

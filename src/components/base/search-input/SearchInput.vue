@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import BaseCard from "./BaseCard.vue";
-import { useMediaQuery } from "@vueuse/core";
+import BaseCard from "../base-card/BaseCard.vue";
 
 const props = defineProps<{
   placeholder?: string;

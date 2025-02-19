@@ -4,7 +4,7 @@ import { useStore } from "vuex";
 import { IconPlus, IconTrash } from "@tabler/icons-vue";
 
 import { Show } from "@/types";
-import BaseButton from "@/components/base/BaseButton.vue";
+import BaseButton from "@/components/base/base-button/BaseButton.vue";
 
 const props = defineProps<{
   show: Show;

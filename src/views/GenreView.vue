@@ -4,9 +4,9 @@ import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 
 import { Show } from "@/types";
-import BaseButton from "@/components/base/BaseButton.vue";
-import GridCardsBlock from "@/components/show/GridCardsBlock.vue";
-import NoResults from "@/components/base/NoResults.vue";
+import BaseButton from "@/components/base/base-button/BaseButton.vue";
+import GridCardsBlock from "@/components/show/grid-cards-block/GridCardsBlock.vue";
+import NoResults from "@/components/base/no-result-block/NoResultsBlock.vue";
 
 const store = useStore();
 const route = useRoute();

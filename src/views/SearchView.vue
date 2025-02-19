@@ -6,17 +6,20 @@ import { useRouter } from "vue-router";
 import debounce from "lodash-es/debounce";
 
 import LoadingSpinner from "@/components/shared/LoadingSpinner.vue";
-import GridCardsBlock from "@/components/show/GridCardsBlock.vue";
-import SearchInput from "@/components/base/SearchInput.vue";
-import NoResults from "@/components/base/NoResults.vue";
+import GridCardsBlock from "@/components/show/grid-cards-block/GridCardsBlock.vue";
+import SearchInput from "@/components/base/search-input/SearchInput.vue";
+import NoResultsBlock from "@/components/base/no-result-block/NoResultsBlock.vue";
+import { Show } from "@/types";
 
 const store = useStore();
 const router = useRouter();
 
 const query = ref("");
-const loading = computed(() => store.getters["search/isLoading"]);
-const error = computed(() => store.getters["search/isError"]);
-const searchResults = computed(() => store.getters["search/getResults"]);
+const loading = computed<boolean>(() => store.getters["search/isLoading"]);
+const error = computed<string>(() => store.getters["search/isError"]);
+const searchResults = computed<Show[]>(
+  () => store.getters["search/getResults"]
+);
 
 const debouncedSearch = debounce(() => {
   if (query.value.length >= 3) {
@@ -62,14 +65,14 @@ const goToShowDetail = (show: any) => {
           @click="goToShowDetail"
         />
       </div>
-      <NoResults v-if="showNoResults">
+      <NoResultsBlock v-if="showNoResults">
         <template v-if="error">
           <p>Error: {{ error }}. Please try again.</p>
         </template>
         <template v-else>
           <p>No result for "{{ query }}". Please try with a different title</p>
         </template>
-      </NoResults>
+      </NoResultsBlock>
     </div>
   </div>
 </template>

@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { Show } from "@/types";
-import CarouselBlock from "../shared/CarouselBlock.vue";
-import ShowCard from "./ShowCard.vue";
+
+import CarouselBlock from "@/components/shared/CarouselBlock.vue";
+import ShowCard from "../show-card/ShowCard.vue";
 
 const props = defineProps<{
   myShowsList: Show[];

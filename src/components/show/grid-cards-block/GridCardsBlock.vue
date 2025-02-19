@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { Show } from "@/types";
-import ShowCard from "@/components/show/ShowCard.vue";
+import { Show } from "../../../types";
+import ShowCard from "../show-card/ShowCard.vue";
 
 const props = defineProps<{
   shows: Show[];

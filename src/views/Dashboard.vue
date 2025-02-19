@@ -6,10 +6,10 @@ import { Show } from "@/types";
 
 import LoadingSpinner from "@/components/shared/LoadingSpinner.vue";
 import CarouselBlock from "@/components/shared/CarouselBlock.vue";
-import ShowCard from "@/components/show/ShowCard.vue";
-import BaseButton from "@/components/base/BaseButton.vue";
-import Watchlist from "@/components/show/Watchlist.vue";
-import NoResults from "@/components/base/NoResults.vue";
+import ShowCard from "@/components/show/show-card/ShowCard.vue";
+import BaseButton from "@/components/base/base-button/BaseButton.vue";
+import Watchlist from "@/components/show/watchlist/Watchlist.vue";
+import NoResults from "@/components/base/no-result-block/NoResultsBlock.vue";
 
 const store = useStore();
 const router = useRouter();
