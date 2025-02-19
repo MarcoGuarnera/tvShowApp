@@ -19,7 +19,9 @@ const shows: Module<ShowsState, any> = {
   state,
   mutations: {
     setShows(state, payload: Show[]) {
-      state.shows = [...payload];
+      state.shows = [...payload].sort(
+        (a, b) => (b.rating.average ?? 0) - (a.rating.average ?? 0)
+      );
     },
     setLoading(state, payload: boolean) {
       state.loading = payload;
