@@ -3,7 +3,7 @@ import {
   createWebHistory,
   type RouteRecordRaw,
 } from "vue-router";
-import Dashboard from "@/views/Dashboard.vue";
+import Dashboard from "@/views/dashboard/Dashboard.vue";
 import ShowDetailView from "@/views/ShowDetailView.vue";
 import GenreView from "@/views/GenreView.vue";
 import SearchView from "@/views/SearchView.vue";
