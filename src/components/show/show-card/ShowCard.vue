@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import placeholderImage from "@/assets/img-placeholder.png";
 
+import BaseImage from "@/components/base/base-image/BaseImage.vue";
+
 const props = defineProps<{
   name: string;
   image: string | undefined;
@@ -13,10 +15,10 @@ const emit = defineEmits<(event: "click", id: number) => void>();
 
 <template>
   <div class="card">
-    <img
-      :src="image || placeholderImage"
+    <BaseImage
+      :src="image ?? placeholderImage"
       :alt="name"
-      :class="{ 'hover-enabled': hover !== false }"
+      :imgClass="hover !== false ? 'hover-enabled' : ''"
       @click="emit('click', id)"
     />
   </div>

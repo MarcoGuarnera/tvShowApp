@@ -4,9 +4,6 @@ import {
   type RouteRecordRaw,
 } from "vue-router";
 import Dashboard from "@/views/dashboard/Dashboard.vue";
-import ShowDetailView from "@/views/ShowDetailView.vue";
-import GenreView from "@/views/GenreView.vue";
-import SearchView from "@/views/SearchView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,19 +18,19 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/shows/:id",
     name: "ShowDetail",
-    component: ShowDetailView,
+    component: () => import("@/views/ShowDetailView.vue"),
     props: true,
   },
   {
     path: "/shows/genre/:genre",
     name: "GenreView",
-    component: GenreView,
+    component: () => import("@/views/GenreView.vue"),
     props: true,
   },
   {
     path: "/search",
     name: "Search",
-    component: SearchView,
+    component: () => import("@/views/SearchView.vue"),
   },
 ];
 

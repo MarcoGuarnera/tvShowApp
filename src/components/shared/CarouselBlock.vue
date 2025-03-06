@@ -12,11 +12,12 @@ const canScrollRight = ref(false);
 // Function to update the control visibility based on scroll position
 const updateScrollButtons = () => {
   if (containerRef.value) {
-    const el = containerRef.value;
+    const containerValue = containerRef.value;
     const epsilon = 10; // tolerance of 10 pixels to handle errors
-    canScrollLeft.value = el.scrollLeft > 0;
+    canScrollLeft.value = containerValue.scrollLeft > 0;
     canScrollRight.value =
-      el.scrollLeft + el.clientWidth < el.scrollWidth - epsilon;
+      containerValue.scrollLeft + containerValue.clientWidth <
+      containerValue.scrollWidth - epsilon;
   }
 };
 
